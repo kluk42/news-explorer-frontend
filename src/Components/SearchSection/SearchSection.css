@@ -1,0 +1,31 @@
+.search {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 0;
+    box-sizing: border-box;
+}
+
+.search__text-wrapper {
+
+}
+
+.search__header {
+    margin: 0;
+    font-family: 'Roboto Slab';
+    font-size: 60px;
+    line-height: 64px;
+    font-weight: normal;
+    width: 608px;
+}
+
+.search__instruction {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 24px;
+    margin: 32px 0 64px;
+    width: 545px;
+}

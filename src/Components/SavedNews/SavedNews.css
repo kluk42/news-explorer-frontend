@@ -1,0 +1,55 @@
+.saved-news {
+    background-color: white;
+    padding: 40px 0 62px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+.saved-news__header {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 24px;
+    color: rgba(26, 27, 34, 0.5);
+    width: 712px;
+    align-self: flex-start;
+    margin: 0;
+}
+
+.saved-news__welcome {
+    font-family: Roboto Slab;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 40px;
+    line-height: 46px;
+    color: #1A1B22;
+    width: 530px;
+    height: 92px;
+    justify-self: flex-start;
+    margin: 28px 0 30px;
+}
+
+.saved-news__key-words-list {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 24px;
+    color: rgba(26, 27, 34, 1);
+    font-weight: 400;
+    font-style: normal;
+
+}
+
+.saved-news__key-words {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 24px;
+    color: rgba(26, 27, 34, 1);
+    font-weight: 700;
+    font-style: normal;
+}

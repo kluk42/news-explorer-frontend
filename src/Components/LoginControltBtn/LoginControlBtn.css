@@ -1,0 +1,31 @@
+.login-control-btn {
+    border: 1px solid white;
+    padding: 0;
+    background: transparent;
+    height: 48px;
+    width: 112px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-control-btn_logged-in {
+    border-color: black;
+}
+
+.login-control-btn__text {
+    margin: 0;
+    font-family: 'Roboto';
+    font-weight: 500;
+    font-style: normal;
+    font-size: 18px;
+    line-height: 24px;
+    min-width: 56px;
+    color: black;
+}
+
+.login-control-btn__logout-img {
+    width: 24px;
+    height: 24px;
+}

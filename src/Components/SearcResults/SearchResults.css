@@ -1,0 +1,47 @@
+.cards-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(auto-fit, 400px);
+}
+
+.search-results {
+    padding: 80px 5vw;
+    display: flex;
+    flex-direction: column;
+    background-color: #F5F6F7;
+}
+
+.search-result__header {
+    font-family: Roboto Slab;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 46px;
+    color: rgba(26, 27, 34, 1);
+    align-self: flex-start;
+}
+
+.search-results__button {
+    align-self: center;
+    width: 288px;
+    height: 64px;
+    padding: 0;
+    margin: 64px 0 0;
+    border: none;
+    border-radius: 80px;
+    background-color: rgba(255, 255, 255, 1);
+    font-family: Roboto;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    text-align: center;
+    transition: background-color .5s cubic-bezier(.27,.64,.81,.75);
+}
+
+.search-results__button:hover {
+    background-color: rgba(56, 25, 25, 0.644);
+}

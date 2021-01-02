@@ -1,0 +1,20 @@
+@font-face {
+    font-family: 'Roboto';
+    font-style:  normal;
+    font-display: swap;
+    src: url("./roboto/roboto-regular.woff") format("woff");
+  }
+
+  @font-face {
+    font-family: 'Roboto Slab';
+    font-style:  normal;
+    font-display: swap;
+    src: url("./roboto/robotoslab-regular.woff") format("woff");
+  }
+
+  @font-face {
+    font-family: 'Source Sans Pro';
+    font-style:  normal;
+    font-display: swap;
+    src: url("./sourcesanspro-regular.woff") format("woff");
+  }

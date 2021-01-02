@@ -1,0 +1,13 @@
+.root {
+    font-family: 'Inter', ‘Arial’, sans-serif;
+    color: white;
+    margin: 0 auto;
+    min-height: 100vh;
+  }
+
+.background-img {
+    background-image: url(../../images/Background-header-main.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 576px;
+}
