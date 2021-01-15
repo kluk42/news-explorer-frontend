@@ -18,3 +18,10 @@
     font-display: swap;
     src: url("./sourcesanspro-regular.woff") format("woff");
   }
+
+  @font-face {
+    font-family: 'Inter';
+    font-style:  normal;
+    font-display: swap;
+    src: url("./inter-regular.woff") format("woff");
+  }

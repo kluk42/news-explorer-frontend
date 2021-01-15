@@ -7,7 +7,6 @@ export default function TrashSvg(props) {
             xmlns="http://www.w3.org/2000/svg"
             className={props.className}
             fill={props.isHovered ? "black" : "#B6BCBF"}
-            {...props}
         >
             <path
                 fillRule="evenodd"

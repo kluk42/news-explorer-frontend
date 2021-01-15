@@ -10,6 +10,20 @@
     box-sizing: border-box;
 }
 
+@media screen and (max-width: 768px) {
+    .header {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: 56px;
+        height: auto;
+        border: none;
+    }
+
+    .header_menu-state_open {
+        background-color: black;
+    }
+}
+
 .header__project-name {
     font-family: 'Roboto Slab';
     font-size: 20px;
@@ -19,11 +33,56 @@
     cursor: pointer;
 }
 
-.header_logeddin {
-    color: black;
+@media screen and (max-width: 768px) {
+    .header__project-name {
+        grid-column: 1/2;
+        width: 117px;
+        font-size: 16px;
+        justify-self: start;
+        margin-left: 16px;
+    }
 }
 
-.header_saved-news-style {
+.header__menu-btn {
+    display: none;
+    cursor: pointer;
+    transition: opacity .5s cubic-bezier(.27,.64,.81,.75);
+}
+@media screen and (max-width: 768px) {
+    .header__menu-btn_hidden {
+        visibility: hidden;
+    }
+}
+
+.header__menu-btn:hover {
+    opacity: .6;
+}
+
+@media screen and (max-width: 768px) {
+    .header__menu-btn {
+        display: block;
+        grid-column: -1/-2;
+        width: 24px;
+        height: 24px;
+        justify-self: end;
+        margin-right: 16px;
+    }
+}
+
+.header_logeddin {
+    color: black;
     background: #FFFFFF;
     box-shadow: inset 0px -1px 0px #D1D2D6;
+}
+
+.background-img {
+    background-image: url(../../images/Background-header-main.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 576px;
+    width: 100%;
+    position: absolute;
+    top:0;
+    left: 0;
+    z-index: -1;
 }

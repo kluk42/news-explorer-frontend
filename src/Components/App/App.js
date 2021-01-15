@@ -1,39 +1,34 @@
-import React, { useEffect, useState } from 'react';
-import { Route, Switch, useHistory } from 'react-router-dom';
+import React, { useState } from 'react';
 import Main from '../Main/Main';
-import SavedNews from '../SavedNews/SavedNews'
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
-import UserIntro from '../UserIntro/UserIntro';
+import LoginPopup from '../LoginPopup/LoginPopup';
 import {LoginStateContext} from '../Contexts/LoginStateContext';
 
 function App() {
-    const [ isLoggedIn, setIsLoggedIn ] = useState(true);
-    const history = useHistory();
+    const [ isLoggedIn, setIsLoggedIn ] = useState(false);
+    const [ isMenuOpen, setIsMenuOpen ] = useState(false);
+    const [ isLoginPopupOpen, setIsLoginPopupOpen ] = useState(false);
 
-    useEffect(() => {
-        // history.push('/saved-news')
-    }, [history])
+    const onMenuOpenClose = () => {
+      setIsMenuOpen(!isMenuOpen);
+    }
 
+    const onLoginBtnClick = () => {
+      setIsLoginPopupOpen(true);
+      setIsMenuOpen(false);
+    }
+
+    const closeAllPopups = () => {
+      setIsLoginPopupOpen(false);
+    }
   return (
-     <LoginStateContext.Provider value={isLoggedIn}>
-            <Switch>
-                <Route exact path="/">
-                    <div className="background-img">
-                        <Header isInSavedNews={false} />
-                        <Main />
-                        <Footer/>
-                    </div>
-                </Route>
-                <Route path="/saved-news">
-                    <Header isInSavedNews={true} />
-                    <UserIntro />
-                    <SavedNews />
-                    <Footer/>
-                </Route>
-            </Switch>
-
-    </LoginStateContext.Provider>
+      <LoginStateContext.Provider value={isLoggedIn}>
+        <Header isLoginPopupOpen={isLoginPopupOpen} onMenuOpenClose={onMenuOpenClose} onLoginBtnClick={onLoginBtnClick} isInSavedNews={false} isMenuOpen={isMenuOpen} />
+        <Main setIsLoggedIn={setIsLoggedIn} />
+        <Footer/>
+        < LoginPopup onClose={closeAllPopups} isOpen={isLoginPopupOpen}/>
+      </LoginStateContext.Provider>
   );
 }
 

@@ -5,6 +5,12 @@
     align-items: baseline;
 }
 
+@media screen and (min-width: 768px) and (max-width: 1440px) {
+    .footer {
+        padding: 24px 0 18px;
+    }
+}
+
 .footer__about {
     font-family: Roboto;
     font-size: 16px;
@@ -21,6 +27,7 @@
 }
 
 .footer__links-list {
+    list-style: none;
     display: flex;
     width: 304px;
     justify-content: space-around;
@@ -28,6 +35,15 @@
     margin: 0;
     margin-right: 40px;
     padding: 0;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1440px) {
+    .footer__links-list {
+        width: 264px;
+    }
+    .footer__links-list {
+        margin-right: 24px;
+    }
 }
 
 .footer__link {

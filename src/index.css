@@ -12,4 +12,7 @@
 @import url(./Components/Card/Card.css);
 @import url(./Components/AboutAuthor/AboutAuthor.css);
 @import url(./Components/Footer/Footer.css);
-@import URL(./Components/UserIntro/UserIntro.css);
+@import url(./Components/UserIntro/UserIntro.css);
+@import url(./Components/CardsList/CardsList.css);
+@import url(./Components/Popup/Popup.css);
+@import url(./Components/Form/Form.css);
