@@ -71,6 +71,13 @@
     }
 }
 
+@media screen and (max-width: 768px) {
+    .search-results__button {
+        margin-top: 16px;
+        width: 100%;
+    }
+}
+
 .search-results__button:hover {
     background-color: rgba(56, 25, 25, 0.644);
 }

@@ -12,10 +12,9 @@ export default function Card ({ keyword, link, owner, title, text, source, image
     useEffect(() => {
         const cardHeader = headerRef.current;
         const headerHeight = cardHeader.offsetHeight;
-        console.log(window.innerWidth)
-        if ((window.innerHeight > 768) && (headerHeight > 60)) {
+        if ((window.innerWidth > 768) && (headerHeight > 60)) {
             setNumberOfLinesForText(4);
-        } 
+        }
         if ((window.innerWidth > 768) && (headerHeight <= 60)) {
             setNumberOfLinesForText(5)
         }

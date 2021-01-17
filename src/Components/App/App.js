@@ -6,7 +6,7 @@ import LoginPopup from '../LoginPopup/LoginPopup';
 import {LoginStateContext} from '../Contexts/LoginStateContext';
 
 function App() {
-    const [ isLoggedIn, setIsLoggedIn ] = useState(false);
+    const [ isLoggedIn, setIsLoggedIn ] = useState(true);
     const [ isMenuOpen, setIsMenuOpen ] = useState(false);
     const [ isLoginPopupOpen, setIsLoginPopupOpen ] = useState(false);
 

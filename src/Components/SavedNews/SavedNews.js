@@ -11,7 +11,7 @@ function SavedNews() {
                 <p className="saved-news__welcome">Грета, у вас 5 сохранённых статей</p>
                 <p className="saved-news__key-words-list">По ключевым словам: <span className="saved-news__key-words">Природа, тайга</span> и <span className="saved-news__key-words">2-м другим</span></p>
             </div>
-                <CardsList isSaved={true}>
+                <CardsList isInSaved={true}>
                     {savedCards.map( c => <li key={c._id}>
                                                 <Card keyword={c.keyword}
                                                     link={c.link}

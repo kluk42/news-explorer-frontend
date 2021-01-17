@@ -4,7 +4,6 @@ import SearchResults from '../SearcResults/SearchResults';
 import AboutAuthor from '../AboutAuthor/AboutAuthor';
 import { Route, Switch, useHistory } from 'react-router-dom';
 import SavedNews from '../SavedNews/SavedNews';
-import UserIntro from '../UserIntro/UserIntro';
 
 function Main ({ setIsLoggedIn }) {
     const history = useHistory();
@@ -22,7 +21,6 @@ function Main ({ setIsLoggedIn }) {
                         <AboutAuthor />
                 </Route>
                 <Route path="/saved-news">
-                    <UserIntro />
                     <SavedNews />
                 </Route>
             </Switch>
