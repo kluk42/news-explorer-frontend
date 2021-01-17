@@ -1,0 +1,145 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+    .form {
+        width: calc(288/320*100vw);
+    }
+}
+
+.form__header {
+    font-family: Roboto;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 28px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: black;
+    margin: 0 0 22px;
+}
+
+@media screen and (max-width: 768px) {
+    .form__header {
+        width: 158px;
+    }
+}
+
+.form__fieldset {
+    padding: 0;
+    margin-bottom: 39px;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+    .form__fieldset {
+        margin-bottom: 8px;
+    }
+}
+
+.form__label {
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 15px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: rgba(47,113,229,1);
+    align-self: flex-start;
+    margin-bottom: 9px;
+}
+
+.form__input {
+    border:none;
+    border-bottom: 1px solid rgba(0,0,0,.2);
+    width: 100%;
+    height: 24px;
+    padding: 0;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 17px;
+    text-align: left;
+    margin-bottom: 3px;
+    padding-bottom: 11px;
+    box-sizing: border-box;
+}
+
+.form__input:last-of-type {
+    margin-bottom: 0;
+}
+
+.form__submit-btn {
+    width: 100%;
+    height: 64px;
+    border: none;
+    background-color: #E6E8EB;
+    border-radius: 100px;
+    font-family: Roboto;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    text-align: center;
+    color: rgb(182,188,191);
+    transition: opacity .5s cubic-bezier(.27,.64,.81,.75);
+    margin-bottom: 16px;
+}
+
+.form__submit-btn_valid {
+    background-color: #2F71E5;
+    color: white;
+    cursor: pointer;
+}
+
+.form__submit-btn:hover {
+    opacity: .6;
+}
+
+.form__other-action {
+    font-family: Inter;
+    font-weight: 400;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    color: black;
+}
+
+.form__link {
+    font-weight: 500;
+    color: #2F71E5;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.form__err-text {
+    height: 14px;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 15px;
+    color: #FF0000;
+    margin-bottom: 13px;
+    visibility: hidden;
+}
+
+@media screen and (max-width: 768px) {
+    .form__err-text {
+        margin-bottom: 15px;
+    }
+}
+
+.form__err-text_visible {
+    visibility: visible;
+}
