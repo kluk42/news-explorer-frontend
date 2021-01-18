@@ -43,6 +43,10 @@
     }
 }
 
+.search-field__input-wrapper_focused {
+    box-shadow: 0 0 3px 2px green;
+}
+
 .search-field__input {
     padding: 0;
     width: 376px;

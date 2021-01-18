@@ -77,6 +77,14 @@
     }
 }
 
+.footer__links-list-item {
+    transition: opacity .5s cubic-bezier(.27,.64,.81,.75);
+}
+
+.footer__links-list-item:hover {
+    opacity: .6;
+}
+
 .footer__link {
     text-decoration: none;
     color: rgba(26, 27, 34, 1);
@@ -103,9 +111,15 @@
 }
 
 .footer__social-networks-list-item {
+    cursor: pointer;
     align-self: flex-start;
     width: 24px;
     height: 24px;
+    transition: opacity .5s cubic-bezier(.27,.64,.81,.75);
+}
+
+.footer__social-networks-list-item:hover {
+    opacity: .6;
 }
 
 .footer__social-networks-list-item:first-of-type {
