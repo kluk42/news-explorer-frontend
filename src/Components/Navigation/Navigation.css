@@ -92,10 +92,6 @@
     }
 }
 
-.navigation__saved-news-menu-item_clicked {
-    border-bottom: black 3px solid;
-}
-
 .navigation__menu-item:nth-of-type(2) {
     color: rgba(182, 188, 191, 1);
 
@@ -106,13 +102,16 @@
 }
 
 .navigation__link {
+    display: flex;
+    width: 100%;
+    height: 100%;
     font-family: 'Roboto';
     font-weight: 500;
     font-style: normal;
     font-size: 18px;
     line-height: 24px;
     text-decoration: none;
-    color: white;
+    align-items: center;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1440px) {
@@ -121,7 +120,17 @@
     }
 }
 
-.navigation__link_loggedin {
+.navigation__link_active {
+    border-bottom: 3px solid;
+}
+
+.navigation__link_colors_white {
+    color: white;
+    border-bottom-color: white;
+}
+
+.navigation__link_colors_black {
     color: black;
+    border-bottom-color: black;
 }
 
