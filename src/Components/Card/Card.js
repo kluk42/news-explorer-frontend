@@ -1,4 +1,5 @@
 import React, { useState, useEffect, createRef } from 'react';
+import useWindowSize from '../../utils/useWindowSize/useWindowSize';
 import BookmarkSvg from '../BookmarkSvg/BookmarkSvg';
 import TrashSvg from '../TrashSvg/TrashSvg';
 import { useLocation } from 'react-router-dom';
@@ -6,27 +7,28 @@ import { useLocation } from 'react-router-dom';
 export default function Card ({ keyword, link, owner, title, text, source, image, date, isSaved }) {
     const [ isControlsHovered, setIsControlsHovered ] = useState(false);
     const [ numberOfLinesForText, setNumberOfLinesForText ] = useState();
+    const [ windowWidth ] = useWindowSize();
     const headerRef = createRef();
     const location = useLocation().pathname;
 
     useEffect(() => {
         const cardHeader = headerRef.current;
         const headerHeight = cardHeader.offsetHeight;
-        if ((window.innerWidth > 768) && (headerHeight > 60)) {
+        if ((windowWidth > 768) && (headerHeight > 60)) {
             setNumberOfLinesForText(4);
         }
-        if ((window.innerWidth > 768) && (headerHeight <= 60)) {
+        if ((windowWidth > 768) && (headerHeight <= 60)) {
             setNumberOfLinesForText(5)
         }
 
-        if ((window.innerWidth < 768) && (headerHeight > 52)) {
+        if ((windowWidth < 768) && (headerHeight > 52)) {
             setNumberOfLinesForText(2);
         }
 
-        if ((window.innerWidth < 768) && (headerHeight <= 52)) {
+        if ((windowWidth < 768) && (headerHeight <= 52)) {
             setNumberOfLinesForText(4);
         }
-    }, [headerRef])
+    }, [windowWidth, headerRef])
 
     const handleBookmarkColor = (evt) => {
         if ((evt.type === 'mouseenter') && (!isControlsHovered) && (window.innerWidth > 1440) ) {

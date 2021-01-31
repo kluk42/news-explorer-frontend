@@ -13,10 +13,6 @@
     }
 }
 
-.search__text-wrapper {
-
-}
-
 .search__header {
     margin: 0;
     font-family: 'Roboto Slab';
@@ -65,4 +61,11 @@
         width: 288px;
         margin-bottom: 122px;
     }
+}
+
+.search__error {
+    margin: 10px 0 0;
+    line-height: 16px;
+    font-size: 14px;
+    height: 16px;
 }

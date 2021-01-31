@@ -1,28 +1,38 @@
 import React from 'react';
 import Popup from '../Popup/Popup';
-import Form from '../Form/Form';
+import FormContainer from '../FormContainer/FormContainer';
+import Field from '../Field/FIeld';
 
-export default function RegistrationPopup () {
+export default function RegistrationPopup ({isOpen, onClose}) {
     return(
-        <Popup>
-            <Form
+        <Popup isOpen={isOpen} onClose={onClose}>
+            <FormContainer
                 header="Регистрация"
                 btnName="Зарегистрироваться"
                 formLink="/saved-news"
                 otherActionName="Войти"
             >
                 <fieldset className="form__fieldset">
-                    <label htmlFor="email-input" className="form__label">Email</label>
-                    <input required type='email' id="email-input" placeholder="Введите почту" name="email-input" className="form__input"></input>
-                    <span className="form__err-text form__err-text_visible">Тут будут ошибки валидации.</span>
-                    <label htmlFor="password-input" className="form__label">Пароль</label>
-                    <input required type='password' id="password-input" name="password-input" placeholder="Введите пароль" className="form__input"></input>
-                    <span className="form__err-text">Тут будут ошибки валидации.</span>
-                    <label htmlFor="name-input" className="form__label">Имя</label>
-                    <input required type='text' id="name-input" name="name-input" placeholder="Введите своё имя" className="form__input"></input>
-                    <span className="form__err-text">Тут будут ошибки валидации.</span>
+                    <Field
+                        id="registraion-email-input"
+                        label="Email"
+                        placeholder="Введите почту"
+                        type="email"
+                    />
+                    <Field
+                        id="registration-password-input"
+                        label="Пароль"
+                        placeholder="Введите пароль"
+                        type="password"
+                    />
+                    <Field
+                        id="registration-name-input"
+                        label="Имя"
+                        placeholder="Введите своё имя"
+                        type="text"
+                    />
                 </fieldset>
-            </Form>
+            </FormContainer>
         </Popup>
     )
 }
