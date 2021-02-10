@@ -7,7 +7,6 @@ export default function SearchField({ onSubmit, onChange, input }) {
         setIsFocused(!isFocused);
     }
 
-
     return(
         <form className="search-field" onSubmit={onSubmit} noValidate>
             <div className={`search-field__input-wrapper ${isFocused && 'search-field__input-wrapper_focused'}`}>

@@ -81,3 +81,8 @@
 .search-results__button:hover {
     background-color: rgba(56, 25, 25, 0.644);
 }
+
+.search-results__error {
+    justify-self: center;
+    color: black;
+}

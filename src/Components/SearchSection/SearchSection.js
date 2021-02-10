@@ -1,23 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import SearchField from '../SearchField/SearchField';
 
-function SearchSection () {
-    const [ input, setInput ] = useState('Природа');
-    const [ isFieldEmpty, setIsFieldEmpty ] = useState(false);
-
-    const onChange = (evt) => {
-        setInput(evt.target.value);
-    }
-
-    const onSubmit = (evt) => {
-        evt.preventDefault();
-        if (!input) {
-            setIsFieldEmpty(true)
-        } else {
-            setIsFieldEmpty(false);
-        }
-    }
-
+function SearchSection ({ searchWords, handleSearchInput, onSubmitSearchInput }) {
     return (
         <section className="search">
             <div className="search__text-wrapper">
@@ -28,8 +12,8 @@ function SearchSection () {
                     Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.
                 </p>
             </div>
-            <SearchField onChange={onChange} onSubmit={onSubmit} input={input} />
-            <p className="search__error">{isFieldEmpty && 'Нужно ввести ключевое слово'}</p>
+            <SearchField onChange={handleSearchInput} onSubmit={onSubmitSearchInput} input={searchWords} />
+            <p className="search__error">{!searchWords && 'Нужно ввести ключевое слово'}</p>
         </section>
     )
 };

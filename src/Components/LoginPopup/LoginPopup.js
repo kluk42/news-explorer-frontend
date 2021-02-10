@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import Popup from '../Popup/Popup';
 import FormContainer from '../FormContainer/FormContainer';
+import Field from '../Field/FIeld';
 
-export default function LoginPopup ({ onClose, openRegistration }) {
+export default function LoginPopup ({ onClose, openRegistration, errFromServer, onSubmit }) {
     const [ hasErrors, setHasErrors ] = useState(true);
 
     const validate = values => {
@@ -20,21 +21,22 @@ export default function LoginPopup ({ onClose, openRegistration }) {
             errors['login-password-input'] = 'Поле обязательно для заполнения';
         };
         if ((password.length < 6) && (password)) {
-            errors['login-password-input'] = 'Пароль должен быть не менее 6 символов';
+            errors['login-password-input'] = 'Пароль должен содержать не менее 6 символов';
         };
         setHasErrors(errors['login-email-input'] || errors['login-password-input']);
 
         return errors
     }
+
     const formikProps = {
         initialValues: {
             'login-email-input': '',
             'login-password-input': ''
         },
         validate,
-        onSubmit: (values, onSubmitProps) => {
-            console.log(values);
-            onClose();
+        onSubmit: (values, { resetForm }) => {
+            onSubmit(values['login-email-input'], values['login-password-input']);
+            resetForm();
         },
     }
 
@@ -48,7 +50,25 @@ export default function LoginPopup ({ onClose, openRegistration }) {
                 onOtherActionClick={openRegistration}
                 formikProps={formikProps}
                 hasErrors={hasErrors}
-            />
+                errFromServer={errFromServer}
+            >
+                <fieldset className="form-container__fieldset">
+                    <Field
+                            id="login-email-input"
+                            name="login-email-input"
+                            label="Email"
+                            placeholder="Введите почту"
+                            type="email"
+                    />
+                    <Field
+                            id="login-password-input"
+                            name="login-password-input"
+                            label="Пароль"
+                            placeholder="Введите пароль"
+                            type="password"
+                    />
+                </fieldset>
+            </FormContainer>
         </Popup>
     )
 }

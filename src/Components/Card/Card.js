@@ -1,15 +1,36 @@
 import React, { useState, useEffect, createRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import useWindowSize from '../../utils/useWindowSize/useWindowSize';
 import BookmarkSvg from '../BookmarkSvg/BookmarkSvg';
 import TrashSvg from '../TrashSvg/TrashSvg';
-import { useLocation } from 'react-router-dom';
+import { useUser } from '../../utils/useUser/useUser';
 
-export default function Card ({ keyword, link, owner, title, text, source, image, date, isSaved }) {
+export default function Card ({ keyword, title, text, source, image, date, saveCard, card, id, deleteCard, savedCards }) {
     const [ isControlsHovered, setIsControlsHovered ] = useState(false);
     const [ numberOfLinesForText, setNumberOfLinesForText ] = useState();
     const [ windowWidth ] = useWindowSize();
+    const { userInfo } = useUser();
     const headerRef = createRef();
-    const location = useLocation().pathname;
+    const [ cardToSave, setCardToSave ] = useState();
+    const [ isSaved, setIsSaved ] = useState(false);
+    const isInSavedNews = useLocation().pathname === '/saved-news';
+
+    const isLoggedIn = !!userInfo.user;
+
+    useEffect(() => {
+        const checkIfSaved = () => {
+            return !!savedCards.find((cardFromServer) => {
+                return cardFromServer.image === image;
+            })
+        }
+        if (savedCards) {
+            setIsSaved(checkIfSaved())
+        }
+    }, [savedCards, image])
+
+    useEffect(() => {
+        setCardToSave(card);
+    }, [card])
 
     useEffect(() => {
         const cardHeader = headerRef.current;
@@ -44,17 +65,35 @@ export default function Card ({ keyword, link, owner, title, text, source, image
             setIsControlsHovered(false);
         }
     }
+
+    const onBookmarkClick = async () => {
+        if (!isSaved) {
+            try {
+                await saveCard(cardToSave);
+                setIsSaved(true);
+            }
+            catch (err) {
+                const errParsed = await err.json();
+                console.log(errParsed)
+            }
+        }
+    }
+
+    const onDeleteBtnClick = () => {
+        deleteCard(id);
+    }
+
     return(
         <article className="card">
-            {isSaved && <div className="card__keyword">
-                <p className="card__keyword-text">{keyword[0]}</p>
+            {isSaved && isInSavedNews && <div className="card__keyword">
+                <p className="card__keyword-text">{keyword}</p>
             </div>}
-            {!isSaved && isControlsHovered && location !== '/saved-news' && <div className="card__advice">
+            {!isSaved && isControlsHovered && !isLoggedIn && <div className="card__advice">
                 <p className="card__text-advice">Войдите, чтобы сохранять статьи</p>
             </div>}
             <div className="card__controls" onClick={handleBookmarkColor} onMouseEnter={handleBookmarkColor} onMouseLeave={handleBookmarkColor}>
-                { ((!isSaved) || (location !== '/saved-news')) ? <BookmarkSvg isHovered={isControlsHovered} className="card__bookmark-img" /> : '' }
-                {isSaved && <TrashSvg isHovered={isControlsHovered} className="card__trash-img" />}
+                { (!isInSavedNews) ? <BookmarkSvg onClick={onBookmarkClick} isFillingBlue={isSaved && isLoggedIn} isOutlineBlack={isControlsHovered} className="card__bookmark-img" /> : '' }
+                {isSaved && isInSavedNews && <TrashSvg onClick={onDeleteBtnClick} isHovered={isControlsHovered} className="card__trash-img" />}
             </div>
             <img alt={title} src={image} className="card__image"></img>
             <div className="card__bottom">

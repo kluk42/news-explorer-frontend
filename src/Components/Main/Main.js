@@ -1,27 +1,25 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import { useUser } from '../../utils/useUser/useUser';
 import SearchSection from '../SearchSection/SearchSection';
 import SearchResults from '../SearcResults/SearchResults';
 import AboutAuthor from '../AboutAuthor/AboutAuthor';
-import { Route, Switch, useHistory } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import SavedNews from '../SavedNews/SavedNews';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
-function Main ({ setIsLoggedIn }) {
-    const history = useHistory();
-
-    useEffect(() => {
-        // setIsLoggedIn(true);
-        // history.push('/saved-news')
-    }, [history])
+function Main ({ searchWords, handleSearchInput, onSubmitSearchInput, areArticlesPending, currentArticles, wasQueryDone, isSearchResponseWithError, saveCard, deleteCard, savedCards, onRedirect }) {
+    const { userInfo } = useUser();
+    const isLoggedIn = !!userInfo.user && !userInfo.isLoading;
     return (
         <main className="content">
             <Switch>
+                <ProtectedRoute onRedirect={onRedirect} isLoggedIn={isLoggedIn} path="/saved-news">
+                    <SavedNews deleteCard={deleteCard} savedCards={savedCards} />
+                </ProtectedRoute>
                 <Route exact path="/">
-                        <SearchSection />
-                        <SearchResults />
+                        <SearchSection handleSearchInput={handleSearchInput} onSubmitSearchInput={onSubmitSearchInput} searchWords={searchWords} />
+                        <SearchResults saveCard={saveCard} savedCards={savedCards} isSearchResponseWithError={isSearchResponseWithError} currentArticles={currentArticles} searchWords={searchWords} wasQueryDone={wasQueryDone} areArticlesPending={areArticlesPending} />
                         <AboutAuthor />
-                </Route>
-                <Route path="/saved-news">
-                    <SavedNews />
                 </Route>
             </Switch>
         </main>

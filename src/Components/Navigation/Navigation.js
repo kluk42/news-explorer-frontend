@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
 import LoginControlBtn from '../LoginControltBtn/LoginControlBtn';
-import { LoginStateContext } from '../Contexts/LoginStateContext';
 import { useLocation, NavLink } from 'react-router-dom';
+import { useUser } from '../../utils/useUser/useUser';
 
 function Navigation ({ isMenuOpen, onLoginBtnClick }) {
-  const isLoggedIn = useContext(LoginStateContext);
+  const { userInfo } = useUser();
+  const isLoggedIn = !!userInfo.user;
   const isInSavedNews = useLocation().pathname === '/saved-news';
     return (
         <nav className={`navigation ${isMenuOpen && 'navigation_open'}`} >

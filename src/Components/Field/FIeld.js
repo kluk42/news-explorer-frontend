@@ -5,9 +5,9 @@ export default function Field ({label, ...props}) {
     const [field, meta] = useField(props);
     return(
         <>
-            <label htmlFor={props.id} className="form-container__label">{props.label}</label>
+            <label htmlFor={props.id} className="form-container__label">{label}</label>
             <input {...field} {...props} className="form-container__input" ></input>
-            <span className="form-container__err-text">{meta.touched && meta.error && meta.error}</span>
+            <span className="form-container__err-text">{meta.touched && meta.error}</span>
         </>
     )
 }

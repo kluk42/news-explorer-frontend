@@ -138,3 +138,9 @@
         margin-bottom: 15px;
     }
 }
+
+.form-container__error-from-server {
+    color: red;
+    margin: 0 0 2px;
+    text-align: center;
+}

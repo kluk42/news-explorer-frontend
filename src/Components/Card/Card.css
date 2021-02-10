@@ -85,6 +85,10 @@
     line-height: 30px;
     color: rgba(26, 27, 34, 1);
     margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1440px) {
@@ -116,7 +120,7 @@
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 4;
+    -webkit-line-clamp: 3;
 }
 
 @media screen and (max-width: 768px) {
