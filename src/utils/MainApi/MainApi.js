@@ -1,6 +1,6 @@
 class MainApi {
     constructor(token) {
-        this._baseUrl = 'http://localhost:4000';
+        this._baseUrl = 'http://api.kluk-news.students.nomoredomains.rocks';
         this._token = token;
     }
 
