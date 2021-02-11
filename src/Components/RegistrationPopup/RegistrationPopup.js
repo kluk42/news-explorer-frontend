@@ -59,6 +59,7 @@ export default function RegistrationPopup ({ onClose, openLogin, onSubmit, errFr
                 formikProps={formikProps}
                 hasErrors={hasErrors}
                 errFromServer={errFromServer}
+                fieldNames={['registration-email-input', 'registration-password-input', 'registration-name-input']}
             >
                 <fieldset className="form-container__fieldset">
                     <Field

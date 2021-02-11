@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import CardsList from '../CardsList/CardsList';
 import Card from '../Card/Card';
 import Preloader from '../Preloader/Preloader';
@@ -8,11 +8,9 @@ export default function SearchResults({ areArticlesPending, wasQueryDone, curren
     const [ cardsToRender, setCardsToRender ] = useState([]);
     const [ lastRenderedArticleIndex, setLastRenderedArticleIndex ] = useState(null);
 
-    const processArticles = useCallback(
-        (article) => {
+    const processArticles = (article) => {
         const card = {};
-
-        card.keyword= searchWords;
+        card.keyword= localStorage.getItem('lastKeyword') ? localStorage.getItem('lastKeyword') : 'Природа';
         card.link = article.url;
         card.title = article.title;
         card.text= article.description;
@@ -29,8 +27,9 @@ export default function SearchResults({ areArticlesPending, wasQueryDone, curren
         card.source = article.source.name;
 
         return card
-    }, [searchWords]
-    )
+    }
+
+    console.log(cardsToRender)
 
     useEffect(() => {
         const initialArticlesJSON = localStorage.getItem('currentArticles');
@@ -46,7 +45,7 @@ export default function SearchResults({ areArticlesPending, wasQueryDone, curren
             setAllArticles(null);
             setCardsToRender(null);
         }
-    }, [processArticles])
+    }, [])
 
     useEffect(() => {
         if (currentArticles) {
@@ -60,7 +59,7 @@ export default function SearchResults({ areArticlesPending, wasQueryDone, curren
             setAllArticles(null);
             setCardsToRender(null);
         }
-    }, [currentArticles, processArticles])
+    }, [currentArticles])
 
     function onBtnClick () {
         if ((lastRenderedArticleIndex !== allArticles.length-1) && (allArticles)) {

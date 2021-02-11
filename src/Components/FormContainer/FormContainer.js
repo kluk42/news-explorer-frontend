@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Formik, Form } from 'formik';
 
-export default function FormContainer ({ children, header, btnName, otherActionName, isSuccesPopup, suggestion, onOtherActionClick, formikProps, hasErrors, openLoginPopup, errFromServer }) {
+export default function FormContainer ({ children, header, btnName, otherActionName, isSuccesPopup, suggestion, onOtherActionClick, formikProps, hasErrors, openLoginPopup, errFromServer, fieldNames }) {
+
     return(
             <Formik
                 {...formikProps}

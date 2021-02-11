@@ -73,12 +73,14 @@ function App() {
 
     const onRegistrationLinkClick = () => {
         closeAllPopups();
+        setErrFromServer('');
         setIsRegistrationPopupOpen(true);
         window.addEventListener('keydown', handleEscClose);
     }
 
     const openLoginPopup = () => {
         closeAllPopups();
+        setErrFromServer('');
         setIsLoginPopupOpen(true);
         window.addEventListener('keydown', handleEscClose);
     }
@@ -114,7 +116,7 @@ function App() {
             if (isSearchResponseWithError) setIsSearchResponseWithError(false);
             if (response.totalResults !== 0) {
                 localStorage.setItem('currentArticles', JSON.stringify(response.articles));
-                localStorage.setItem('lastKeyword', searchWords)
+                localStorage.setItem('lastKeyword', searchWords);
                 setCurrentArticles(response.articles);
             } else {
                 localStorage.setItem('currentArticles', JSON.stringify(null));

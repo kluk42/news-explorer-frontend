@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:4000';
+const baseUrl = 'http://api.kluk-news.students.nomoredomains.rocks';
 
 const handleLogin = async (email, password) => {
         const response = await fetch(`${baseUrl}/signin`, {
