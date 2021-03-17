@@ -7,7 +7,7 @@ import { Route, Switch } from 'react-router-dom';
 import SavedNews from '../SavedNews/SavedNews';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
-function Main ({ searchWords, handleSearchInput, onSubmitSearchInput, areArticlesPending, currentArticles, wasQueryDone, isSearchResponseWithError, saveCard, deleteCard, savedCards, onRedirect }) {
+function Main ({ openLoginPopup, searchWords, handleSearchInput, onSubmitSearchInput, areArticlesPending, currentArticles, wasQueryDone, isSearchResponseWithError, saveCard, deleteCard, savedCards, onRedirect }) {
     const { userInfo } = useUser();
     const isLoggedIn = !!userInfo.user && !userInfo.isLoading;
     return (
@@ -17,8 +17,22 @@ function Main ({ searchWords, handleSearchInput, onSubmitSearchInput, areArticle
                     <SavedNews deleteCard={deleteCard} savedCards={savedCards} />
                 </ProtectedRoute>
                 <Route exact path="/">
-                        <SearchSection handleSearchInput={handleSearchInput} onSubmitSearchInput={onSubmitSearchInput} searchWords={searchWords} />
-                        <SearchResults saveCard={saveCard} savedCards={savedCards} isSearchResponseWithError={isSearchResponseWithError} currentArticles={currentArticles} searchWords={searchWords} wasQueryDone={wasQueryDone} areArticlesPending={areArticlesPending} />
+                        <SearchSection
+                            handleSearchInput={handleSearchInput}
+                            onSubmitSearchInput={onSubmitSearchInput}
+                            searchWords={searchWords}
+                        />
+                        <SearchResults
+                            saveCard={saveCard}
+                            savedCards={savedCards}
+                            isSearchResponseWithError={isSearchResponseWithError}
+                            currentArticles={currentArticles}
+                            searchWords={searchWords}
+                            wasQueryDone={wasQueryDone}
+                            areArticlesPending={areArticlesPending}
+                            openLoginPopup={openLoginPopup}
+                            deleteCard={deleteCard}
+                        />
                         <AboutAuthor />
                 </Route>
             </Switch>

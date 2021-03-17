@@ -99,6 +99,7 @@ function App() {
       setIsLoginPopupOpen(false);
       setIsRegistrationPopupOpen(false);
       setIsSuccessPopupOpen(false);
+      setErrFromServer('');
       window.removeEventListener('keydown', handleEscClose);
     }
 
@@ -132,30 +133,34 @@ function App() {
         }
     }
 
-    const onSubmitLoginForm = async (email, password) => {
+    const onSubmitLoginForm = async (email, password, resetForm, setSubmitting) => {
         try {
             setErrFromServer('');
             const response = await handleLogin(email, password);
             const { token } = await response.json();
+            setSubmitting(false);
+            resetForm();
             onLoginSuccess(token);
         }
         catch (err) {
-            let errParsed= await err.json();
+            // let errParsed= await err.json();
             if (err.status !== 500) {
-                setErrFromServer(errParsed.message)
+                setErrFromServer(err.message)
             } else {
                 setErrFromServer('На сервере проблемы. Подождите немного и попробуйте ещё раз')
             }
-            console.log(errParsed)
+            setSubmitting(false);
+            console.log(err)
         }
     }
 
-    const onSubmitRegistrationForm = async (email, password, name) => {
+    const onSubmitRegistrationForm = async (email, password, name, resetForm) => {
         try {
             const response = await handleRegistration(email, password, name);
             const { successMsg } = await response.json();
             console.log(successMsg);
             onSuccessfulRegistration(); // Открыть попап с поздравлением
+            resetForm();
         }
         catch (err) {
             let errParsed= await err.json();
@@ -181,7 +186,7 @@ function App() {
     }
 
     const deleteCard = async (id) => {
-        api.deleteNewsCard(id);
+        await api.deleteNewsCard(id);
         const oldCardsList = savedCards;
         const newCardsList = oldCardsList.filter((oldCard) => oldCard._id !== id);
         setSavedCards(newCardsList);
@@ -196,12 +201,45 @@ function App() {
     }
         return (
             <>
-                <Header isLoginPopupOpen={isLoginPopupOpen} onMenuOpenClose={onMenuOpenClose} onLoginBtnClick={onLoginBtnClick} isMenuOpen={isMenuOpen} />
-                <Main deleteCard={deleteCard} onRedirect={onRedirect} savedCards={savedCards} saveCard={saveCard} isSearchResponseWithError={isSearchResponseWithError} wasQueryDone={wasQueryDone} areArticlesPending={areArticlePending} handleSearchInput={handleSearchInput} onSubmitSearchInput={onSubmitSearchInput} searchWords={searchWords} currentArticles={currentArticles}  />
+                <Header
+                    isLoginPopupOpen={isLoginPopupOpen}
+                    onMenuOpenClose={onMenuOpenClose}
+                    onLoginBtnClick={onLoginBtnClick}
+                    isMenuOpen={isMenuOpen}
+                />
+                <Main
+                    openLoginPopup={openLoginPopup}
+                    deleteCard={deleteCard}
+                    onRedirect={onRedirect}
+                    savedCards={savedCards}
+                    saveCard={saveCard}
+                    isSearchResponseWithError={isSearchResponseWithError}
+                    wasQueryDone={wasQueryDone}
+                    areArticlesPending={areArticlePending}
+                    handleSearchInput={handleSearchInput}
+                    onSubmitSearchInput={onSubmitSearchInput}
+                    searchWords={searchWords}
+                    currentArticles={currentArticles}
+                />
                 <Footer/>
-                {isLoginPopupOpen && <LoginPopup onSubmit={onSubmitLoginForm} errFromServer={errFromServer} onLoginSuccess={onLoginSuccess} openRegistration={onRegistrationLinkClick} onClose={closeAllPopups} />}
-                {isRegistrationPopupOpen && <RegistrationPopup errFromServer={errFromServer} onSubmit={onSubmitRegistrationForm} onSuccessfulRegistration={onSuccessfulRegistration} openLogin={openLoginPopup} onClose={closeAllPopups} />}
-                {isSuccessPopupOpen && <RegistrationSuccessPopup openLoginPopup={openLoginPopup} onClose={closeAllPopups} />}
+                {isLoginPopupOpen && <LoginPopup
+                                        onSubmit={onSubmitLoginForm}
+                                        errFromServer={errFromServer}
+                                        onLoginSuccess={onLoginSuccess}
+                                        openRegistration={onRegistrationLinkClick}
+                                        onClose={closeAllPopups}
+                                    />}
+                {isRegistrationPopupOpen && <RegistrationPopup
+                                                errFromServer={errFromServer}
+                                                onSubmit={onSubmitRegistrationForm}
+                                                onSuccessfulRegistration={onSuccessfulRegistration}
+                                                openLogin={openLoginPopup}
+                                                onClose={closeAllPopups}
+                                            />}
+                {isSuccessPopupOpen && <RegistrationSuccessPopup
+                                            openLoginPopup={openLoginPopup}
+                                            onClose={closeAllPopups}
+                                        />}
             </>
   );
 }

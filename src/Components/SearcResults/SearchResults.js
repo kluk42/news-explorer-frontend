@@ -3,12 +3,12 @@ import CardsList from '../CardsList/CardsList';
 import Card from '../Card/Card';
 import Preloader from '../Preloader/Preloader';
 
-export default function SearchResults({ areArticlesPending, wasQueryDone, currentArticles, isSearchResponseWithError, searchWords, savedCards, saveCard }) {
+export default function SearchResults({ openLoginPopup, areArticlesPending, wasQueryDone, currentArticles, isSearchResponseWithError, deleteCard, savedCards, saveCard }) {
     const [ allArticles, setAllArticles ] = useState([]);
     const [ cardsToRender, setCardsToRender ] = useState([]);
     const [ lastRenderedArticleIndex, setLastRenderedArticleIndex ] = useState(null);
 
-    const processArticles = (article) => {
+    const processArticles = (article, id) => {
         const card = {};
         card.keyword= localStorage.getItem('lastKeyword') ? localStorage.getItem('lastKeyword') : 'Природа';
         card.link = article.url;
@@ -28,8 +28,6 @@ export default function SearchResults({ areArticlesPending, wasQueryDone, curren
 
         return card
     }
-
-    console.log(cardsToRender)
 
     useEffect(() => {
         const initialArticlesJSON = localStorage.getItem('currentArticles');
@@ -78,22 +76,27 @@ export default function SearchResults({ areArticlesPending, wasQueryDone, curren
         <section className="search-results">
             <div className="search-results__container">
                 <h2 className="search-results__header">Результаты поиска</h2>
-                {cardsToRender && <CardsList>
-                    {cardsToRender.map( c => <li key={c.date+c.link+c.source}>
-                                            <Card
-                                                keyword={c.keyword}
-                                                link={c.link}
-                                                source={c.source}
-                                                title={c.title}
-                                                text={c.text}
-                                                image={c.image}
-                                                date={c.date}
-                                                className="cards-list__card"
-                                                card={c}
-                                                savedCards={savedCards}
-                                                saveCard={saveCard}
-                                            />
-                                        </li>)}
+                {cardsToRender && !areArticlesPending && !isSearchResponseWithError &&  <CardsList>
+                    {cardsToRender.map( c => {return (<li key={c.date+c.link+c.source}>
+                                                    <Card
+                                                        keyword={c.keyword}
+                                                        link={c.link}
+                                                        source={c.source}
+                                                        title={c.title}
+                                                        text={c.text}
+                                                        image={c.image}
+                                                        date={c.date}
+                                                        className="cards-list__card"
+                                                        card={c}
+                                                        savedCards={savedCards}
+                                                        saveCard={saveCard}
+                                                        openLoginPopup={openLoginPopup}
+                                                        deleteCard={deleteCard}
+                                                        id={c._id}
+                                                    />
+                                                </li>)}
+                                        )
+                                            }
                 </CardsList>}
                 { areArticlesPending && <Preloader /> }
                 { wasQueryDone && (!currentArticles) && <p className="search-results__error">По вашему запросу ничего не найдено</p> }

@@ -34,9 +34,8 @@ export default function LoginPopup ({ onClose, openRegistration, errFromServer, 
             'login-password-input': ''
         },
         validate,
-        onSubmit: (values, { resetForm }) => {
-            onSubmit(values['login-email-input'], values['login-password-input']);
-            resetForm();
+        onSubmit: (values, { resetForm, setSubmitting }) => {
+            onSubmit(values['login-email-input'], values['login-password-input'], resetForm, setSubmitting);
         },
     }
 
@@ -51,23 +50,26 @@ export default function LoginPopup ({ onClose, openRegistration, errFromServer, 
                 formikProps={formikProps}
                 hasErrors={hasErrors}
                 errFromServer={errFromServer}
+                render={
+                    isSubmitting => <fieldset className="form-container__fieldset">
+                                        <Field
+                                            id="login-email-input"
+                                            name="login-email-input"
+                                            label="Email"
+                                            placeholder="Введите почту"
+                                            type="email"
+                                            disabled={isSubmitting}
+                                        />
+                                        <Field
+                                            id="login-password-input"
+                                            name="login-password-input"
+                                            label="Пароль"
+                                            placeholder="Введите пароль"
+                                            type="password"
+                                            disabled={isSubmitting}
+                                        />
+                                    </fieldset>}
             >
-                <fieldset className="form-container__fieldset">
-                    <Field
-                            id="login-email-input"
-                            name="login-email-input"
-                            label="Email"
-                            placeholder="Введите почту"
-                            type="email"
-                    />
-                    <Field
-                            id="login-password-input"
-                            name="login-password-input"
-                            label="Пароль"
-                            placeholder="Введите пароль"
-                            type="password"
-                    />
-                </fieldset>
             </FormContainer>
         </Popup>
     )

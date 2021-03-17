@@ -60,30 +60,35 @@ export default function RegistrationPopup ({ onClose, openLogin, onSubmit, errFr
                 hasErrors={hasErrors}
                 errFromServer={errFromServer}
                 fieldNames={['registration-email-input', 'registration-password-input', 'registration-name-input']}
+                render={
+                    isSubmitting => <fieldset className="form-container__fieldset">
+                                        <Field
+                                                id="registration-email-input"
+                                                name="registration-email-input"
+                                                label="Email"
+                                                placeholder="Введите почту"
+                                                type="email"
+                                                disabled={isSubmitting}
+                                        />
+                                        <Field
+                                                id="registration-password-input"
+                                                name="registration-password-input"
+                                                label="Пароль"
+                                                placeholder="Введите пароль"
+                                                type="password"
+                                                disabled={isSubmitting}
+                                        />
+                                        <Field
+                                                id="registration-name-input"
+                                                name="registration-name-input"
+                                                label="Имя"
+                                                placeholder="Введите ваше имя"
+                                                type="name"
+                                                disabled={isSubmitting}
+                                        />
+                                    </fieldset>
+                }
             >
-                <fieldset className="form-container__fieldset">
-                    <Field
-                            id="registration-email-input"
-                            name="registration-email-input"
-                            label="Email"
-                            placeholder="Введите почту"
-                            type="email"
-                    />
-                    <Field
-                            id="registration-password-input"
-                            name="registration-password-input"
-                            label="Пароль"
-                            placeholder="Введите пароль"
-                            type="password"
-                    />
-                    <Field
-                            id="registration-name-input"
-                            name="registration-name-input"
-                            label="Имя"
-                            placeholder="Введите ваше имя"
-                            type="name"
-                    />
-                </fieldset>
             </FormContainer>
         </Popup>
     )

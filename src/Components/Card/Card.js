@@ -5,7 +5,7 @@ import BookmarkSvg from '../BookmarkSvg/BookmarkSvg';
 import TrashSvg from '../TrashSvg/TrashSvg';
 import { useUser } from '../../utils/useUser/useUser';
 
-export default function Card ({ keyword, title, text, source, image, date, saveCard, card, id, deleteCard, savedCards }) {
+export default function Card ({ openLoginPopup, keyword, title, text, source, image, date, saveCard, card, id, deleteCard, savedCards }) {
     const [ isControlsHovered, setIsControlsHovered ] = useState(false);
     const [ numberOfLinesForText, setNumberOfLinesForText ] = useState();
     const [ windowWidth ] = useWindowSize();
@@ -67,7 +67,7 @@ export default function Card ({ keyword, title, text, source, image, date, saveC
     }
 
     const onBookmarkClick = async () => {
-        if (!isSaved) {
+        if ((!isSaved) && (isLoggedIn)) {
             try {
                 await saveCard(cardToSave);
                 setIsSaved(true);
@@ -76,7 +76,10 @@ export default function Card ({ keyword, title, text, source, image, date, saveC
                 const errParsed = await err.json();
                 console.log(errParsed)
             }
-        }
+        };
+        if (!isLoggedIn) {
+            openLoginPopup();
+        };
     }
 
     const onDeleteBtnClick = () => {
