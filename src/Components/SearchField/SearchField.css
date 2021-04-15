@@ -1,0 +1,106 @@
+.search-field {
+    display: flex;
+    height: 64px;
+    position: relative;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1440px) {
+    .search-field {
+        height: 56px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .search-field {
+        height: auto;
+        flex-direction: column;
+        width: 288px;
+    }
+}
+
+.search-field__input-wrapper {
+    width: 608px;
+    border: none;
+    border-radius: 100px;
+    padding-left: 24px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1440px) {
+    .search-field__input-wrapper {
+        width: 448px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .search-field__input-wrapper {
+        width: 100%;
+        height: 56px;
+        padding-left: 16px;
+    }
+}
+
+.search-field__input-wrapper_focused {
+    box-shadow: 0 0 3px 2px green;
+}
+
+.search-field__input {
+    padding: 0;
+    width: 376px;
+    border: none;
+    outline: none;
+    height: 22px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1440px) {
+    .search-field__input {
+        width: 228px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .search-field__input {
+        width: 256px;
+    }
+}
+
+.search-field__button {
+    cursor: pointer;
+    width: 168px;
+    height: 100%;
+    border-radius: 100px;
+    border: none;
+    background: rgba(47, 113, 229, 1);
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    color: white;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transition: background-color .5s cubic-bezier(.27,.64,.81,.75);
+}
+
+@media screen and (min-width: 768px) and (max-width: 1440px) {
+    .search-field__button {
+        width: 160px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .search-field__button {
+        position: static;
+        width: 100%;
+        height: 56px;
+        margin-top: 16px;
+    }
+}
+
+.search-field__button:hover {
+    background-color: #347EFF;
+}

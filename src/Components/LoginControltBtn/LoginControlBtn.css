@@ -1,0 +1,61 @@
+.login-control-btn {
+    border: 1px solid white;
+    padding: 0;
+    background: transparent;
+    height: 48px;
+    width: 176px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-left: 32px;
+    transition: opacity .5s cubic-bezier(.27,.64,.81,.75);
+}
+
+.login-control-btn:hover {
+    opacity: .6;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1440px) {
+    .login-control-btn {
+        width: 152px;
+        height: 40px;
+        margin-left: 16px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .login-control-btn {
+        width: calc(288/320*100vw);
+        height: 56px;
+        border-radius: 100px;
+        margin: 20px 0 24px;
+    }
+}
+
+.login-control-btn_location_saved-news {
+    border-color: black;
+    color: black;
+    width: 112px;
+}
+
+.login-control-btn__text {
+    margin: 0;
+    font-family: 'Roboto';
+    font-weight: 500;
+    font-style: normal;
+    font-size: 18px;
+    line-height: 24px;
+    min-width: 56px;
+    color: white;
+}
+
+.login-control-btn__text_color_black {
+    color: black;
+}
+
+.login-control-btn__logout-img {
+    width: 24px;
+    height: 24px;
+}

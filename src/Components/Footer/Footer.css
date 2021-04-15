@@ -1,0 +1,127 @@
+.footer {
+    padding: 32px 0 26px;
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1440px) {
+    .footer {
+        padding: 24px 0 18px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .footer {
+        flex-direction: column;
+        width: calc(288/320*100vw);
+        margin: 0 auto;
+        padding: 20px 0 22px;
+    }
+}
+
+.footer__about {
+    font-family: Roboto;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+    text-align: left;
+    color: rgba(182, 188, 191, 1);
+    margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+    .footer__about {
+        flex-direction: column;
+        order: 2;
+        margin: 0 auto
+    }
+}
+
+.footer__navigation {
+    display: flex;
+}
+
+@media screen and (max-width: 768px) {
+    .footer__navigation {
+        order: 1;
+        justify-content: space-between;
+        width: 100%;
+        margin-bottom: 38px;
+    }
+}
+
+.footer__links-list {
+    list-style: none;
+    display: flex;
+    width: 304px;
+    justify-content: space-around;
+    align-items: flex-start;
+    margin: 0;
+    margin-right: 40px;
+    padding: 0;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1440px) {
+    .footer__links-list {
+        width: 264px;
+        margin-right: 24px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .footer__links-list {
+        flex-direction: column;
+        margin: 0;
+    }
+}
+
+.footer__links-list-item {
+    transition: opacity .5s cubic-bezier(.27,.64,.81,.75);
+}
+
+.footer__links-list-item:hover {
+    opacity: .6;
+}
+
+.footer__link {
+    text-decoration: none;
+    color: rgba(26, 27, 34, 1);
+    font-family: Roboto;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: center;
+    list-style: none;
+}
+
+@media screen and (max-width: 768px) {
+    .footer__link {
+        line-height: 48px;
+    }
+}
+
+.footer__social-networks-list {
+    display: flex;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+}
+
+.footer__social-networks-list-item {
+    cursor: pointer;
+    align-self: flex-start;
+    width: 24px;
+    height: 24px;
+    transition: opacity .5s cubic-bezier(.27,.64,.81,.75);
+}
+
+.footer__social-networks-list-item:hover {
+    opacity: .6;
+}
+
+.footer__social-networks-list-item:first-of-type {
+    margin-right: 24px;
+}
